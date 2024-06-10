@@ -1,0 +1,105 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto;
+}
+
+.scene {
+  width: 661px;
+  height: 100vh;
+  padding-top: 62px;
+  padding-right: 84px;
+  padding-bottom: 72px;
+  padding-left: 77px;
+  background-color: #c4c4c4;
+}
+
+.input {
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 56.25px;
+  text-align: left;
+  color: #000000;
+  font-family: inherit;
+  background-color: #ffffff;
+}
+
+.form__input {
+  width: 500px;
+  height: 61px;
+  margin: 0;
+  padding: 0;
+  padding-left: 13px;
+  padding-top: 5px;
+  border: 0;
+}
+
+.menu-repositories {
+  margin: 0;
+  margin-bottom: 44px;
+  padding: 0;
+  list-style: none;
+  width: 500px;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 35.16px;
+  text-align: left;
+  color: #000000;
+}
+
+.menu-repositories__item {
+  display: block;
+  height: 44px;
+  border: 2px solid #000000;
+  background-color: #e3e3e3;
+  margin: 0;
+  padding: 0;
+  padding-left: 13px;
+  padding-bottom: 9px;
+  transition-duration: 0.6s;
+  transition-property: background-color;
+}
+
+.menu-repositories__item:hover {
+  background-color: #65cdf9;
+}
+
+.list-added-repositories {
+  width: 500px;
+  background-color: #e6e6e6;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list-added-repositories__item {
+  width: 503px;
+  height: 101px;
+  background-color: #e27beb;
+  border: 1px solid #000000;
+}
+
+.list-added-repositories__list-info {
+  margin: 0;
+  padding: 0;
+  padding-top: 8px;
+  padding-right: 17px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  list-style: none;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 28.13px;
+  text-align: left;
+  color: #000000;
+}

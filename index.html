@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>github-api-autocomplete</title>
+  </head>
+  <body>
+    <div class="scene">
+      <form class="form" id="formElem">
+        <input
+          class="form__input input"
+          type="text"
+          id="autocomplete"
+          name="name"
+          autocomplete="off"
+        />
+      </form>
+      <ul class="menu-repositories">
+        <li class="menu-repositories__item"></li>
+        <li class="menu-repositories__item"></li>
+        <li class="menu-repositories__item"></li>
+        <li class="menu-repositories__item"></li>
+        <li class="menu-repositories__item"></li>
+      </ul>
+
+      <ul class="list-added-repositories">
+        <li class="list-added-repositories__item">
+          <ul class="list-added-repositories__list-info">
+            <li class="list-added-repositories__list-info__name"></li>
+            <li class="list-added-repositories__list-info__owner"></li>
+            <li class="list-added-repositories__list-info__stars"></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
