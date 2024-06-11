@@ -95,7 +95,12 @@ function addRepositories(evt) {
           <ul class="list-added-repositories__list-info list-info">
             <li class="list-info__name">Name: ${json.items[index].name}</li>
             <li class="list-info__owner">Owner: ${json.items[index].owner.login}</li>
-            <li class="list-info__stars">Stars: ${json.items[index].stargazers_count}</li>
+            <li class="list-info__stars">Stars: ${json.items[index].stargazers_count}</li>       
+            <div class="btn__cross">
+              <div class="btn__cross-line btn__cross-line_horizontal"></div>
+              <div class="btn__cross-line btn__cross-line_vertical">
+                </div>
+            </div>
           </ul>
         </li>`
     );

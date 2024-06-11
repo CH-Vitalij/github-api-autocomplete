@@ -111,7 +111,7 @@ html {
 
 .list-added-repositories__item {
   width: 503px;
-  min-height: 101px;
+  height: 101px;
   background-color: #e27beb;
   border: 1px solid #000000;
   padding-top: 8px;
@@ -121,8 +121,13 @@ html {
 }
 
 .list-info {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: center;
   width: 470px;
-  min-height: 85px;
+  height: 85px;
   list-style: none;
   font-size: 24px;
   font-weight: 400;
@@ -134,4 +139,29 @@ html {
 .list-added-repositories__list-info {
   margin: 0;
   padding: 0;
+}
+
+.btn__cross {
+  cursor: pointer;
+  height: 56px;
+  width: 50px;
+  margin-right: 16px;
+  position: relative;
+}
+
+.btn__cross-line {
+  height: 4px;
+  width: 56px;
+  position: absolute;
+  background-color: #ff0000;
+  border-radius: 2px;
+  top: 50%;
+}
+
+.btn__cross-line_horizontal {
+  transform: rotate(45deg);
+}
+
+.btn__cross-line_vertical {
+  transform: rotate(-45deg);
 }
