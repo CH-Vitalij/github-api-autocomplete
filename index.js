@@ -1,4 +1,3 @@
-const form = document.getElementById("formElem");
 const input = document.getElementById("autocomplete");
 const menuRepositories = document.querySelector(".menu-repositories");
 const menuRepositoriesItems = document.querySelectorAll(
@@ -10,12 +9,9 @@ const listAddedRepositories = document.querySelector(
 
 let json, value;
 
-// const listAddedRepositoriesItem = listAddedRepositories.firstElementChild;
-// const listInfo = listAddedRepositoriesItem.firstElementChild;
-// const listInfoItems = listInfo.children;
-
 input.addEventListener("input", debounce(handleRequest, 400));
-menuRepositories.addEventListener("click", addRepositories);
+menuRepositories.addEventListener("click", handleAddRepositories);
+listAddedRepositories.addEventListener("click", handleListAddedRepositories);
 
 async function handleRequest(evt) {
   evt.preventDefault();
@@ -28,7 +24,6 @@ async function handleRequest(evt) {
 
     if (response.ok) {
       json = await response.json();
-      // console.log(json);
 
       setListContent(json);
 
@@ -50,10 +45,12 @@ function setListContent(json) {
     if (len >= 5) {
       el.textContent =
         json.items[i].name[0].toUpperCase() + json.items[i].name.slice(1);
+      el.style.height = "44px";
       el.dataset.show = "visible";
     } else if (len < 5 && len !== 0) {
       if (i >= len) {
         el.textContent = "";
+        el.style.height = "44px";
         el.dataset.show = "hidden";
       } else {
         el.textContent =
@@ -62,6 +59,7 @@ function setListContent(json) {
     } else if (len === 0) {
       if (i === 0) {
         el.textContent = "The repository with this name does not exist";
+        el.style.height = "55px";
         el.dataset.show = "visible";
       } else {
         el.textContent = "";
@@ -82,10 +80,10 @@ function debounce(fn, debounceTime) {
   };
 }
 
-function addRepositories(evt) {
+function handleAddRepositories(evt) {
   if (evt.target.tagName === "LI") {
     input.value = "";
-    let index = [...menuRepositories.children].indexOf(evt.target);
+    const index = [...menuRepositories.children].indexOf(evt.target);
     listAddedRepositories.style.opacity = 1;
     listAddedRepositories.style.visibility = "visible";
 
@@ -95,14 +93,21 @@ function addRepositories(evt) {
           <ul class="list-added-repositories__list-info list-info">
             <li class="list-info__name">Name: ${json.items[index].name}</li>
             <li class="list-info__owner">Owner: ${json.items[index].owner.login}</li>
-            <li class="list-info__stars">Stars: ${json.items[index].stargazers_count}</li>       
-            <div class="btn__cross">
-              <div class="btn__cross-line btn__cross-line_horizontal"></div>
-              <div class="btn__cross-line btn__cross-line_vertical">
-                </div>
-            </div>
+            <li class="list-info__stars">Stars: ${json.items[index].stargazers_count}</li>      
+            <button class="btn">
+              <div class="btn__line btn__line_horizontal"></div>
+              <div class="btn__line btn__line_vertical">
+              </div>
+            </button>
           </ul>
         </li>`
     );
   }
+}
+
+function handleListAddedRepositories(evt) {
+  console.log(evt.target);
+  let btn = evt.target.closest(".btn");
+  if (!btn) return;
+  btn.closest(".list-added-repositories__item").remove();
 }

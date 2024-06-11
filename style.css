@@ -83,6 +83,7 @@ html {
 }
 
 .menu-repositories__item:hover {
+  cursor: pointer;
   background-color: #65cdf9;
 }
 
@@ -141,15 +142,24 @@ html {
   padding: 0;
 }
 
-.btn__cross {
+.btn {
+  background: none;
+  border: none;
+  padding: 0;
   cursor: pointer;
-  height: 56px;
-  width: 50px;
-  margin-right: 16px;
+  height: 48px;
+  width: 52px;
+  margin-right: 8px;
   position: relative;
+  transition-duration: 0.6s;
+  transition-property: transform;
 }
 
-.btn__cross-line {
+.btn:hover {
+  transform: rotate(180deg) scale(1.1);
+}
+
+.btn__line {
   height: 4px;
   width: 56px;
   position: absolute;
@@ -158,10 +168,10 @@ html {
   top: 50%;
 }
 
-.btn__cross-line_horizontal {
+.btn__line_horizontal {
   transform: rotate(45deg);
 }
 
-.btn__cross-line_vertical {
+.btn__line_vertical {
   transform: rotate(-45deg);
 }
