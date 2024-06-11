@@ -1,19 +1,26 @@
 const form = document.getElementById("formElem");
 const input = document.getElementById("autocomplete");
 const menuRepositories = document.querySelector(".menu-repositories");
-const menuRepositoriesItem = document.querySelectorAll(
+const menuRepositoriesItems = document.querySelectorAll(
   ".menu-repositories__item"
 );
+const listAddedRepositories = document.querySelector(
+  ".list-added-repositories"
+);
 
-let json;
+let json, value;
 
-input.addEventListener("input", debounce(handleRequest, 500));
+// const listAddedRepositoriesItem = listAddedRepositories.firstElementChild;
+// const listInfo = listAddedRepositoriesItem.firstElementChild;
+// const listInfoItems = listInfo.children;
+
+input.addEventListener("input", debounce(handleRequest, 400));
 menuRepositories.addEventListener("click", addRepositories);
 
 async function handleRequest(evt) {
   evt.preventDefault();
 
-  let value = input.value;
+  value = input.value;
 
   if (value.charCodeAt() !== 32 && value !== "") {
     let url = `https://api.github.com/search/repositories?q=${value}+in:name&sort=best-match&order=desc`;
@@ -31,7 +38,7 @@ async function handleRequest(evt) {
       alert("Ошибка HTTP: " + response.status);
     }
   } else if (value === "") {
-    menuRepositoriesItem.forEach((el) => (el.textContent = ""));
+    menuRepositoriesItems.forEach((el) => (el.textContent = ""));
     menuRepositories.style.opacity = 0;
     menuRepositories.style.visibility = "hidden";
   }
@@ -39,7 +46,7 @@ async function handleRequest(evt) {
 
 function setListContent(json) {
   const len = json.items.length;
-  menuRepositoriesItem.forEach((el, i) => {
+  menuRepositoriesItems.forEach((el, i) => {
     if (len >= 5) {
       el.textContent =
         json.items[i].name[0].toUpperCase() + json.items[i].name.slice(1);
@@ -77,10 +84,20 @@ function debounce(fn, debounceTime) {
 
 function addRepositories(evt) {
   if (evt.target.tagName === "LI") {
+    input.value = "";
     let index = [...menuRepositories.children].indexOf(evt.target);
-    console.log(index);
-    console.log(json.items[index].name);
-    console.log(json.items[index].owner.login);
-    console.log(json.items[index].stargazers_count);
+    listAddedRepositories.style.opacity = 1;
+    listAddedRepositories.style.visibility = "visible";
+
+    listAddedRepositories.insertAdjacentHTML(
+      "beforeend",
+      `<li class="list-added-repositories__item">
+          <ul class="list-added-repositories__list-info list-info">
+            <li class="list-info__name">Name: ${json.items[index].name}</li>
+            <li class="list-info__owner">Owner: ${json.items[index].owner.login}</li>
+            <li class="list-info__stars">Stars: ${json.items[index].stargazers_count}</li>
+          </ul>
+        </li>`
+    );
   }
 }
