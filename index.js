@@ -9,7 +9,7 @@ const listAddedRepositories = document.querySelector(
 
 let json, value;
 
-input.addEventListener("input", debounce(handleRequest, 400));
+input.addEventListener("input", debounce(handleRequest, 1000));
 menuRepositories.addEventListener("click", handleAddRepositories);
 listAddedRepositories.addEventListener("click", handleListAddedRepositories);
 
